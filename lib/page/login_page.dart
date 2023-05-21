@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:swaptry/page/widgets/appTheme.dart';
 import 'package:swaptry/page/widgets/utils.dart';
+import 'package:swaptry/constant_builder.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onClickedRegister;

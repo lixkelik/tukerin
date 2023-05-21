@@ -44,39 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBYPYppgSyxXGnpKvw3Bl60Eh_Pp1hgu_A',
-    appId: '1:509935924102:web:8b4803faf49e82573eb207',
-    messagingSenderId: '509935924102',
-    projectId: 'swaptry2',
-    authDomain: 'swaptry2.firebaseapp.com',
-    storageBucket: 'swaptry2.appspot.com',
+    apiKey: 'AIzaSyDKphRY9Vm1AOPqLTZxqe6C6bWnZFwp5k8',
+    appId: '1:418865579922:web:499bd70c6bdebe7f90e34b',
+    messagingSenderId: '418865579922',
+    projectId: 'tukerin-50e8c',
+    authDomain: 'tukerin-50e8c.firebaseapp.com',
+    storageBucket: 'tukerin-50e8c.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDPHjNV5ffhs4xg6GkTr1EKYOiZLMbKKrM',
-    appId: '1:509935924102:android:0c90ab4a76788bf93eb207',
-    messagingSenderId: '509935924102',
-    projectId: 'swaptry2',
-    storageBucket: 'swaptry2.appspot.com',
+    apiKey: 'AIzaSyARmM93HgE6Uj7ZtEQRQOm-KZAUbzQmVi0',
+    appId: '1:418865579922:android:ccc4bc0cf747296790e34b',
+    messagingSenderId: '418865579922',
+    projectId: 'tukerin-50e8c',
+    storageBucket: 'tukerin-50e8c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD95IFsMOcjEvU2Dnb8lqHitenhT_AStnY',
-    appId: '1:509935924102:ios:44c62206c81d84373eb207',
-    messagingSenderId: '509935924102',
-    projectId: 'swaptry2',
-    storageBucket: 'swaptry2.appspot.com',
-    iosClientId: '509935924102-s74jqu5u94241udpiftvkkjupsn0vahk.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDfSOAt7qEVyCRH7Sp7vkKyRL8CJqvidfw',
+    appId: '1:418865579922:ios:b5b28c90f9fbe61690e34b',
+    messagingSenderId: '418865579922',
+    projectId: 'tukerin-50e8c',
+    storageBucket: 'tukerin-50e8c.appspot.com',
+    iosClientId: '418865579922-tksocep68l4n5jq87c2g1f5oog9jirud.apps.googleusercontent.com',
     iosBundleId: 'com.example.swaptry',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD95IFsMOcjEvU2Dnb8lqHitenhT_AStnY',
-    appId: '1:509935924102:ios:44c62206c81d84373eb207',
-    messagingSenderId: '509935924102',
-    projectId: 'swaptry2',
-    storageBucket: 'swaptry2.appspot.com',
-    iosClientId: '509935924102-s74jqu5u94241udpiftvkkjupsn0vahk.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDfSOAt7qEVyCRH7Sp7vkKyRL8CJqvidfw',
+    appId: '1:418865579922:ios:b5b28c90f9fbe61690e34b',
+    messagingSenderId: '418865579922',
+    projectId: 'tukerin-50e8c',
+    storageBucket: 'tukerin-50e8c.appspot.com',
+    iosClientId: '418865579922-tksocep68l4n5jq87c2g1f5oog9jirud.apps.googleusercontent.com',
     iosBundleId: 'com.example.swaptry',
   );
 }

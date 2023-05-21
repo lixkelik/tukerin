@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "509935924102",
-    "project_id": "swaptry2",
-    "storage_bucket": "swaptry2.appspot.com"
+    "project_number": "418865579922",
+    "project_id": "tukerin-50e8c",
+    "storage_bucket": "tukerin-50e8c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:509935924102:android:0c90ab4a76788bf93eb207",
+        "mobilesdk_app_id": "1:418865579922:android:ccc4bc0cf747296790e34b",
         "android_client_info": {
-          "package_name": "com.example.swaptry"
+          "package_name": "com.example.tukerin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "509935924102-k9ttle8andsj76n3nfqrqpbimgfrahnd.apps.googleusercontent.com",
+          "client_id": "418865579922-faf7loem07hum2snkpl5a879v3bohulp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDPHjNV5ffhs4xg6GkTr1EKYOiZLMbKKrM"
+          "current_key": "AIzaSyARmM93HgE6Uj7ZtEQRQOm-KZAUbzQmVi0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "509935924102-k9ttle8andsj76n3nfqrqpbimgfrahnd.apps.googleusercontent.com",
+              "client_id": "418865579922-faf7loem07hum2snkpl5a879v3bohulp.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "509935924102-s74jqu5u94241udpiftvkkjupsn0vahk.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.swaptry"
-              }
             }
           ]
         }

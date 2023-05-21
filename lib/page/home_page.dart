@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                             [
                               Center(
                                 child: Text(
-                                  'Map not loaded\n please check your internet connection',
+                                  'Map not loaded',
                                   style: textStyle(12, regular, greyText),
                                   textAlign: TextAlign.center,
                                 ),
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                                         encoded: true
                                       )
                                     ],
-                                    googleApiKey:'AIzaSyBRCUfJ3RAt0x91m6js-Y-2ShQkub1DId8',
+                                    googleApiKey:'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
                                     center: stat.Location(
                                         _initialcameraposition.latitude,
                                         _initialcameraposition.longitude),
