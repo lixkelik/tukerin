@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:swaptry/models/station.dart';
-import 'package:swaptry/page/search_page1.dart';
-import 'package:swaptry/page/widgets/ads_card.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/get_distance.dart';
-import 'package:swaptry/page/widgets/station_card.dart';
+import 'package:tukerin/models/station.dart';
+import 'package:tukerin/page/search_page1.dart';
+import 'package:tukerin/page/widgets/ads_card.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/page/widgets/get_distance.dart';
+import 'package:tukerin/page/widgets/station_card.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
-import 'package:swaptry/main.dart';
+import 'package:tukerin/main.dart';
 
 
 
@@ -36,11 +36,12 @@ class _HomePageState extends State<HomePage> {
 
   LocationData? currentLocation;
   Location location = Location();
-
+  late Future<List<Station>> stationList;
   @override
   void initState() {
     fetchLocation();
     getMarker();
+    stationList = _getStations();
     _googleMapController?.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: _initialcameraposition, zoom: 14.5)));
     super.initState();
   }
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           color: darkGrey,
         ),
         toolbarHeight: 67,
-        backgroundColor: purple,
+        backgroundColor: appColor,
         elevation: 0,
         title: Center(
           child: InkWell(
@@ -150,15 +151,6 @@ class _HomePageState extends State<HomePage> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
                                   child: stat.StaticMap(
-                                    paths: [
-                                      stat.Path.circle(
-                                        center: stat.Location(_initialcameraposition.latitude, _initialcameraposition.longitude), 
-                                        radius: 1300,
-                                        fillColor: purple.withOpacity(0.3),
-                                        color: purple.withOpacity(0),
-                                        encoded: true
-                                      )
-                                    ],
                                     googleApiKey:'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
                                     center: stat.Location(
                                         _initialcameraposition.latitude,
@@ -235,30 +227,21 @@ class _HomePageState extends State<HomePage> {
                       style: textStyle(20, semiBold, darkerGrey)
                     ),
                   ),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: stationName.snapshots(),
+                  FutureBuilder<List<Station>>(
+                    future: stationList,
                     builder: (_, snapshot) {
-                      if (snapshot.hasData) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(child: Text('Error fetching stations'));
+                      } else if (snapshot.hasData) {
+                        final stations = snapshot.data!;
+                        stations.sort((a, b) => a.distance!.compareTo(b.distance!));
                         return Column(
-                          children: (snapshot.data!).docs.map((e) =>
-                            StationCard(
-                              Station(
-                                image: e['image'],
-                                name: e['stationName'],
-                                address: e['address'],
-                                price: e['price1'],
-                                distance: double.parse((getDistance(
-                                  _initialcameraposition.latitude, _initialcameraposition.longitude ,e['location'].latitude, e['location'].longitude
-                                )).toStringAsFixed(2)), 
-                                latitude: e['latitude'],
-                                longitude: e['longitude'],
-                                currLoc: LatLng(_initialcameraposition.latitude, _initialcameraposition.longitude),
-                              ),
-                            ),
-                          ).take(5).toList(),
+                          children: stations.map((station) => StationCard(station)).take(5).toList(),
                         );
                       } else {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: Text('No stations found'));
                       }
                     },
                   ),
@@ -293,4 +276,19 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
+  Future<List<Station>> _getStations() async {
+    final querySnapshot = await FirebaseFirestore.instance.collection('station').get();
+    final stations = <Station>[];
+    final userLocation = await location.getLocation();
+    final userLatLng = LatLng(userLocation.latitude!, userLocation.longitude!);
+    for (final docSnapshot in querySnapshot.docs) {
+      final station = Station.fromSnapshot(docSnapshot);
+      station.distance = getDistance(userLatLng.latitude, userLatLng.longitude, station.latitude, station.longitude,);
+      
+      stations.add(station);
+    }
+    return stations;
+  }
+
 }

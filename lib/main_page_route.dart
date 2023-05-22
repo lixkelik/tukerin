@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/landing_page.dart';
-import 'package:swaptry/page/widgets/navigation.dart';
-import 'package:swaptry/page/widgets/utils.dart';
+import 'package:tukerin/page/landing_page.dart';
+import 'package:tukerin/page/widgets/navigation.dart';
+import 'package:tukerin/page/widgets/utils.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 

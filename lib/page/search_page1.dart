@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:swaptry/models/station.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/models/station.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/get_distance.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/get_distance.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:swaptry/page/widgets/station_card.dart';
-import 'package:swaptry/main.dart';
+import 'package:tukerin/page/widgets/station_card.dart';
+import 'package:tukerin/main.dart';
 
 // ignore: must_be_immutable
 class SearchPage1 extends StatefulWidget {
@@ -36,7 +37,7 @@ class SearchPage1State extends State<SearchPage1> {
           'Search Swap Station'
         ),
 
-        backgroundColor: purple,
+        backgroundColor: appColor,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,7 +45,7 @@ class SearchPage1State extends State<SearchPage1> {
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 15),
               decoration: BoxDecoration(
-                color: purple,
+                color: appColor,
               ),
               child: SizedBox(
                 height: 40,

@@ -1,4 +1,4 @@
-package com.example.swaptry
+package com.example.tukerin
 
 import io.flutter.embedding.android.FlutterActivity
 

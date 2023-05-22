@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swaptry/models/station.dart';
-import 'package:swaptry/page/detail_screen.dart';
+import 'package:tukerin/models/station.dart';
+import 'package:tukerin/page/detail_screen.dart';
 import 'package:intl/intl.dart';
 
 class StationCard extends StatelessWidget {
@@ -13,7 +13,7 @@ class StationCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-          context, MaterialPageRoute(builder: (_) => DetailScreen(station.image, station.name, station.address, station.price, station.distance, station.latitude, station.longitude, station.currLoc)),
+          context, MaterialPageRoute(builder: (_) => DetailScreen(station.image, station.name, station.address, station.price, station.distance!, station.latitude, station.longitude, station.currLoc)),
         );
       },
       child: Container( 
@@ -28,7 +28,7 @@ class StationCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 image: DecorationImage(
-                  image: AssetImage(station.image),
+                  image: NetworkImage(station.image),
                   fit: BoxFit.cover,
                 ),
               ),   
@@ -65,7 +65,7 @@ class StationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${station.distance} Km From You',
+                      '${station.distance!.toStringAsFixed(1)} Km From You',
                       style: const TextStyle(
                         fontSize: 13,
                         color: Color(0xff818181),

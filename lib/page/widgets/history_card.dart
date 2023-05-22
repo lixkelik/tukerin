@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:swaptry/models/history.dart';
-import 'package:swaptry/page/history_detail_page.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/models/history.dart';
+import 'package:tukerin/page/history_detail_page.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 class HistoryCard extends StatelessWidget {
   final History history;

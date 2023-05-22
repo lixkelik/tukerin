@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:swaptry/main.dart';
-import 'package:swaptry/models/history.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/history_card.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/main.dart';
+import 'package:tukerin/models/history.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/history_card.dart';
 
 
 class HistoryPage extends StatefulWidget {
@@ -35,7 +35,7 @@ class _HistoryPageState extends State<HistoryPage> {
     final uid = user!.uid;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: purple,
+        backgroundColor: appColor,
         elevation: 2,
         title: Text(
           'Transaction History',
@@ -48,10 +48,6 @@ class _HistoryPageState extends State<HistoryPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Your History',
-                style: textStyle(23, bold, black),
-              ),
         
               const SizedBox(height: 5),
         

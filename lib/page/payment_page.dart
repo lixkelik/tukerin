@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:swaptry/main.dart';
-import 'package:swaptry/page/success_confirmationpage.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/main.dart';
+import 'package:tukerin/page/success_confirmationpage.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 // ignore: must_be_immutable
 class PaymentPage extends StatefulWidget {

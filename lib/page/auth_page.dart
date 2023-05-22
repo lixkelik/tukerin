@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/login_page.dart';
-import 'package:swaptry/page/register_page.dart';
+import 'package:tukerin/page/login_page.dart';
+import 'package:tukerin/page/register_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

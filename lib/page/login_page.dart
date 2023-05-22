@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/utils.dart';
-import 'package:swaptry/constant_builder.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/utils.dart';
+import 'package:tukerin/constant_builder.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onClickedRegister;
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: 119, height: 55,
                     decoration: BoxDecoration(
-                      color: purple,
+                      color: appColor,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           'Register',
                           textAlign: TextAlign.center,
-                          style: textStyle(18, semiBold, black)
+                          style: textStyle(18, semiBold, darkFont)
                         ),
                       ),
                     ),
@@ -85,12 +85,12 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 'Welcome\nBack!',
                 textAlign: TextAlign.start,
-                style: textStyle(40, bold, darkerGrey)
+                style: textStyle(40, bold, darkFont)
               ),
               Text(
                 'Glad to see you again.',
                 textAlign: TextAlign.start,
-                style: textStyle(18, medium, darkerGrey)
+                style: textStyle(18, medium, darkFont)
               ),
               const SizedBox(height: 30,),
               Stack(

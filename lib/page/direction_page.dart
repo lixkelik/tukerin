@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/get_distance.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/get_distance.dart';
 
 
 // ignore: must_be_immutable
@@ -72,7 +72,7 @@ class _DirectionPageState extends State<DirectionPage> {
           'Directions',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        backgroundColor: purple,
+        backgroundColor: appColor,
       ),
       
       body:Stack(
@@ -93,7 +93,7 @@ class _DirectionPageState extends State<DirectionPage> {
                     Polyline(
                       polylineId: const PolylineId('route'),
                       points: polylineCoordinates,
-                      color: const Color.fromARGB(255, 92, 108, 232),
+                      color: appColor,
                       width: 6
                     ),
                   },
@@ -120,7 +120,7 @@ class _DirectionPageState extends State<DirectionPage> {
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(20),
                     ),
-                    color: purple,
+                    color: appColor,
                   ),
                   child: Column(
                     children: [
@@ -166,7 +166,7 @@ class _DirectionPageState extends State<DirectionPage> {
     PolylinePoints polylinePoints = PolylinePoints();
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyBRCUfJ3RAt0x91m6js-Y-2ShQkub1DId8', 
+      'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw', 
       PointLatLng(_currLoc.latitude, _currLoc.longitude), 
       PointLatLng(_latitude, _longitude),
     );

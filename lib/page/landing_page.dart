@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/auth_page.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/page/auth_page.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

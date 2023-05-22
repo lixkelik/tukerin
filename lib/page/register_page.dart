@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
-import 'package:swaptry/page/widgets/utils.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/utils.dart';
 
 class RegisterPage extends StatefulWidget {
   final VoidCallback onClickedLogin;
@@ -53,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           'Login',
                           textAlign: TextAlign.center,
-                          style: textStyle(18, semiBold, black),
+                          style: textStyle(18, semiBold, darkFont),
                         ),
                       ),
                     ),
@@ -61,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: 119, height: 55,
                     decoration: BoxDecoration(
-                      color: purple,
+                      color: appColor,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
@@ -85,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Text(
                 'Let\'s create\nyou an account!',
                 textAlign: TextAlign.start,
-                style: textStyle(35, bold, darkerGrey)
+                style: textStyle(35, bold, darkFont)
               ),
               const SizedBox(height: 30,),
               Stack(

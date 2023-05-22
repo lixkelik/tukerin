@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tukerin/constant_builder.dart';
 
 
 Color purple = const Color(0xff6E80FE);
@@ -17,7 +17,7 @@ FontWeight regular = FontWeight.w400;
 
 var buttonStyle = ElevatedButton.styleFrom(
                     foregroundColor: Colors.white, 
-                    backgroundColor: const Color(0xff6E80FE),
+                    backgroundColor: appColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(23),
                     ),

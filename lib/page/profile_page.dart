@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: purple,
+          backgroundColor: appColor,
           elevation: 2,
           title: const Text(
             'Profile',

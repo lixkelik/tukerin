@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
 import 'package:intl/intl.dart';
-import 'package:swaptry/models/history.dart';
-import 'package:swaptry/page/direction_page.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/models/history.dart';
+import 'package:tukerin/page/direction_page.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 class HistoryDetailPage extends StatefulWidget {
   final History history;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:swaptry/page/direction_page.dart';
+import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/page/direction_page.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
-import 'package:swaptry/page/payment_page.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/page/payment_page.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 // ignore: must_be_immutable
 class DetailScreen extends StatefulWidget {
@@ -56,11 +57,11 @@ class _DetailScreenState extends State<DetailScreen> {
           'Swap Station Details',
           style: TextStyle(fontWeight: bold),
         ),
-        backgroundColor: purple,
+        backgroundColor: appColor,
       ),
       body: Stack(
         children: [
-          Image.asset(
+          Image.network(
             _image,
             width: MediaQuery.of(context).size.width,
             height: 190,
@@ -108,7 +109,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        '$_distance Km From you',
+                        '${_distance.toStringAsFixed(1)} Km From you',
                         style: textStyle(16, regular, greyText)
                       ),
                     ),
@@ -139,13 +140,13 @@ class _DetailScreenState extends State<DetailScreen> {
                                 borderRadius: BorderRadius.circular(12),
                                 child: stat.StaticMap(
                                   googleApiKey:
-                                      'AIzaSyBRCUfJ3RAt0x91m6js-Y-2ShQkub1DId8',
+                                      'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
                                   center: stat.Location(_latitude, _longitude),
                                   zoom: 14,
                                   scaleToDevicePixelRatio: true,
                                   markers: [
                                     stat.Marker(
-                                      color: purple,
+                                      color: appColor,
                                       locations: [
                                         stat.GeocodedLocation.latLng(_latitude, _longitude)
                                       ]
@@ -173,7 +174,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Container(
                           height: 110,
                           decoration: BoxDecoration(
-                            color: purple,
+                            color: appColor,
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),

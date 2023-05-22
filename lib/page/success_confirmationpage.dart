@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swaptry/page/widgets/appTheme.dart';
+import 'package:tukerin/page/widgets/appTheme.dart';
 
 class SuccessfullPage extends StatelessWidget {
   const SuccessfullPage({super.key});
