@@ -30,11 +30,13 @@ class _LandingPageState extends State<LandingPage> {
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.16),
-                child: Image.asset('assets/img/tukerin_logo.png'),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.16),
+                  child: Image.asset('assets/img/tukerin_logo.png', width: 230,),
+                ),
               ),
               Container(
                   width: MediaQuery.of(context).size.width,

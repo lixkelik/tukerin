@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tukerin/firebase_options.dart';
 import 'package:tukerin/main_page_route.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 CollectionReference stationName = firestore.collection('station');
@@ -12,6 +13,8 @@ CollectionReference transaction = firestore.collection('transactionHistory');
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Future.delayed(const Duration(seconds: 2));
+  FlutterNativeSplash.remove();
 
   runApp(const MainPage());
 }
@@ -24,11 +27,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  // @override
-  // void initState() {
-  //   getLocPermission();
-  //   super.initState();
-  // }
   @override
   Widget build(BuildContext context){
     
@@ -39,25 +37,4 @@ class _MainPageState extends State<MainPage> {
       home: const MainPageRoute()
     );
   }
-
-  // getLocPermission() async{
-  //   bool serviceEnabled;
-  //   PermissionStatus permissionGranted;
-
-  //   serviceEnabled = await location.serviceEnabled();
-  //   if (!serviceEnabled) {
-  //     serviceEnabled = await location.requestService();
-  //     if (!serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-
-  //   permissionGranted = await location.hasPermission();
-  //   if (permissionGranted == PermissionStatus.denied) {
-  //     permissionGranted = await location.requestPermission();
-  //     if (permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-  // }
 }

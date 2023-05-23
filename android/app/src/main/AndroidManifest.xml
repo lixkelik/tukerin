@@ -6,7 +6,7 @@
    <application
         android:label="Tukerin"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/ic_launcher">
           <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw"/>
         <activity
