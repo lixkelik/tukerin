@@ -9,7 +9,6 @@ class Station{
   double? distance;
   double latitude;
   double longitude;
-  LatLng currLoc;
   
 
   Station({
@@ -20,7 +19,6 @@ class Station{
     required this.distance,
     required this.latitude,
     required this.longitude,
-    required this.currLoc,
   });
 
   factory Station.fromSnapshot(DocumentSnapshot snapshot) {
@@ -31,7 +29,6 @@ class Station{
       price: data['price1'] ?? 0,
       latitude: data['location'].latitude ?? 0.0,
       longitude: data['location'].longitude ?? 0.0,
-      currLoc: const LatLng(0.0, 0.0),
       image: data['image'] ?? '', 
       distance: null,
     );

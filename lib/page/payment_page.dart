@@ -2,38 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/main.dart';
+import 'package:tukerin/models/station.dart';
 import 'package:tukerin/page/success_confirmationpage.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
 
 // ignore: must_be_immutable
 class PaymentPage extends StatefulWidget {
-  String name;
-  String address;
-  int price;
-  double latitude;
-  double longitude;
+  Station station;
 
-  PaymentPage(this.name, this.address, this.price, this.latitude, this.longitude, {super.key});
+  PaymentPage(this.station, {super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<PaymentPage> createState() => _PaymentPageState(name, address, price, latitude, longitude,);
+  State<PaymentPage> createState() => _PaymentPageState(station);
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  final String _name;
-  final String _address;
-  final int _price;
-  final double _latitude;
-  final double _longitude;
+  final Station station;
 
   _PaymentPageState(
-    this._name,
-    this._address,
-    this._price,
-    this._latitude,
-    this._longitude,
+    this.station
   );
 
   CollectionReference transactionHistory = firestore.collection('transactionHistory');
@@ -55,7 +45,7 @@ class _PaymentPageState extends State<PaymentPage> {
           'Payment',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        backgroundColor: purple,
+        backgroundColor: appColor,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -66,11 +56,12 @@ class _PaymentPageState extends State<PaymentPage> {
                 key: _keyForm,
                 child: Column( 
                   children: [
-                    const Text(
+                    Text(
                       "Please fill your Credit Card Details",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
+                        color: darkFont
                       ),
                     ),
                     const SizedBox(height: 20,),
@@ -276,7 +267,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       locale: 'id',
                       symbol: 'Rp ',
                       decimalDigits: 2
-                    ).format(_price),
+                    ).format(station.price),
                     style: TextStyle(
                       fontSize: 19,
                       color: darkGrey,
@@ -318,12 +309,12 @@ class _PaymentPageState extends State<PaymentPage> {
   void inputData(String uid) {
     if(_keyForm.currentState!.validate()){
       final data = {
-        "address" : _address,
-        "latitude" : _latitude,
-        "longitude" : _longitude,
+        "address" : station.address,
+        "latitude" : station.latitude,
+        "longitude" : station.longitude,
         "orderDate" : Timestamp.now(),
-        "stationName" : _name,
-        "totalPrice" : _price,
+        "stationName" : station.name,
+        "totalPrice" : station.price,
         "uid" : uid,
       };
       

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:tukerin/constant_builder.dart';
+import 'package:tukerin/models/station.dart';
 import 'package:tukerin/page/direction_page.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
 import 'package:tukerin/page/payment_page.dart';
@@ -9,43 +9,24 @@ import 'package:tukerin/page/widgets/appTheme.dart';
 
 // ignore: must_be_immutable
 class DetailScreen extends StatefulWidget {
-  String image;
-  String name;
-  String address;
-  int price;
-  double distance;
-  double latitude;
-  double longitude;
+  Station station;
   LatLng currLoc;
 
-  DetailScreen(this.image, this.name, this.address, this.price, this.distance,
-      this.latitude, this.longitude, this.currLoc,
+  DetailScreen(this.station, this.currLoc,
       {super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<DetailScreen> createState() => _DetailScreenState(image, name, address, price, latitude, longitude, currLoc, distance);
+  State<DetailScreen> createState() => _DetailScreenState(station, currLoc);
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  final String _image;
-  final String _name;
-  final String _address;
-  final int _price;
-  final double _latitude;
-  final double _longitude;
+  final Station station;
   final LatLng _currLoc;
-  final double _distance;
 
   _DetailScreenState(
-    this._image,
-    this._name,
-    this._address,
-    this._price,
-    this._latitude,
-    this._longitude,
+    this.station,
     this._currLoc,
-    this._distance,
   );
 
   String distance = '0';
@@ -62,7 +43,7 @@ class _DetailScreenState extends State<DetailScreen> {
       body: Stack(
         children: [
           Image.network(
-            _image,
+            station.image,
             width: MediaQuery.of(context).size.width,
             height: 190,
             fit: BoxFit.cover,
@@ -87,14 +68,14 @@ class _DetailScreenState extends State<DetailScreen> {
                       margin: const EdgeInsets.only(top: 15),
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        _name,
+                        station.name,
                         style: textStyle(25, semiBold, darkerGrey)
                       ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        _address,
+                        station.address,
                         style: textStyle(14, medium, greyText)
                       ),
                     ),
@@ -109,7 +90,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        '${_distance.toStringAsFixed(1)} Km From you',
+                        '${station.distance!.toStringAsFixed(1)} Km From you',
                         style: textStyle(16, regular, greyText)
                       ),
                     ),
@@ -121,41 +102,31 @@ class _DetailScreenState extends State<DetailScreen> {
                         borderRadius: BorderRadius.circular(12),
                         color: lightGrey
                       ),
-                      child: Stack(
-                        children: 
-                          [
-                            const Center(
-                              child: Text(
-                                'Map not loaded\n please check your internet connection',
-                                textAlign: TextAlign.center,
+                      child: InkWell(
+                        onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => DirectionPage(station.name, station.address,
+                            station.latitude,station.longitude, _currLoc)),);
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: stat.StaticMap(
+                            googleApiKey:
+                                'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
+                            center: stat.Location(station.latitude, station.longitude),
+                            zoom: 14,
+                            scaleToDevicePixelRatio: true,
+                            markers: [
+                              stat.Marker(
+                                color: appColor,
+                                locations: [
+                                  stat.GeocodedLocation.latLng(station.latitude, station.longitude)
+                                ]
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_) => DirectionPage(_name,_address,_latitude,_longitude,_currLoc)),);
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: stat.StaticMap(
-                                  googleApiKey:
-                                      'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
-                                  center: stat.Location(_latitude, _longitude),
-                                  zoom: 14,
-                                  scaleToDevicePixelRatio: true,
-                                  markers: [
-                                    stat.Marker(
-                                      color: appColor,
-                                      locations: [
-                                        stat.GeocodedLocation.latLng(_latitude, _longitude)
-                                      ]
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -193,7 +164,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             NumberFormat.currency(
                               locale: 'id',
                               symbol: 'Rp ',
-                              decimalDigits: 2).format(_price),
+                              decimalDigits: 2).format(station.price),
                             style: textStyle(15, medium, white)
                           ),
                         ),
@@ -206,7 +177,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (_) => PaymentPage(_name,_address,_price, _latitude,_longitude)),
+                                  MaterialPageRoute(builder: (_) => PaymentPage(station)),
                                 );
                               },
                               style: buttonStyle2,

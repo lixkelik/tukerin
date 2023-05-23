@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
 import 'package:intl/intl.dart';
+import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/models/history.dart';
 import 'package:tukerin/page/direction_page.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
@@ -29,7 +30,7 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
           'Swap Station Details',
           style: TextStyle(fontWeight: bold),
         ),
-        backgroundColor: purple,
+        backgroundColor: appColor,
       ),
 
       body: SingleChildScrollView(
@@ -116,7 +117,7 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                     borderRadius: BorderRadius.circular(12),
                     child: stat.StaticMap(
                       googleApiKey:
-                          'AIzaSyBRCUfJ3RAt0x91m6js-Y-2ShQkub1DId8',
+                          'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
                       center: stat.Location(_history.latitude, _history.longitude),
                       zoom: 14,
                       scaleToDevicePixelRatio: true,

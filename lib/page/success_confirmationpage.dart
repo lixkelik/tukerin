@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
 
 class SuccessfullPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class SuccessfullPage extends StatelessWidget {
           children: [
             Text(
               "Swapped!\nThank you for your order",
-              style: textStyle(25, extraBold, black),
+              style: textStyle(25, extraBold, darkFont),
               textAlign: TextAlign.center,
             ),
 

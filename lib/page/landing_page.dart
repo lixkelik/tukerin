@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/page/auth_page.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
 
@@ -13,7 +13,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: purple,
+      backgroundColor: appColor,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 15),
         child: Column(
@@ -34,14 +34,14 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.16),
-                child: Image.asset('assets/img/logo_black.png'),
+                child: Image.asset('assets/img/tukerin_logo.png'),
               ),
               Container(
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.35),
                   child: Text(
-                    "Welcome to Swaptry",
+                    "Welcome to Tukerin",
                     style: textStyle(20, bold, darkerGrey),
                     textAlign: TextAlign.center,
                   )),
@@ -62,9 +62,10 @@ class _LandingPageState extends State<LandingPage> {
                     textAlign: TextAlign.center),
                 const SizedBox(height: 30,),
                 Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   margin: const EdgeInsets.only(bottom: 35),
                   height: 55,
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: double.infinity,
                   child: ElevatedButton(
                     onPressed: (() {
                       Navigator.push(

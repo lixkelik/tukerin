@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/models/station.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,10 +19,10 @@ class SearchPage1 extends StatefulWidget {
 }
 
 class SearchPage1State extends State<SearchPage1> {
-  final LatLng _currenLocation;
+  final LatLng _currentLocation;
 
   SearchPage1State(
-    this._currenLocation
+    this._currentLocation
   );
 
   String station = "";
@@ -88,15 +87,15 @@ class SearchPage1State extends State<SearchPage1> {
                           address: e['address'],
                           price: e['price1'],
                           distance: double.parse((getDistance(
-                                  _currenLocation.latitude,
-                                  _currenLocation.longitude,
+                                  _currentLocation.latitude,
+                                  _currentLocation.longitude,
                                   e['location'].latitude,
                                   e['location'].longitude))
                               .toStringAsFixed(2)),
                           latitude: e['latitude'],
                           longitude: e['longitude'],
-                          currLoc: _currenLocation,
                         ),
+                        _currentLocation,
                       ),).where((e) => e.station.name.toLowerCase().contains(station.toLowerCase()) || e.station.address.toLowerCase().contains(station.toLowerCase())).toList(),
                     );
                   }

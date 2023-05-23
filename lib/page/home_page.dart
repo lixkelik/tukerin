@@ -28,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   ];
   GoogleMapController? _googleMapController;
   
+  LatLng userLatLng = const LatLng(-6.175835, 106.827158);
+
   @override
   void dispose() {
     _googleMapController?.dispose();
@@ -36,6 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   LocationData? currentLocation;
   Location location = Location();
+  bool isLocationServiceEnabled = false;
   late Future<List<Station>> stationList;
   @override
   void initState() {
@@ -137,51 +140,39 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(12),
                             color: lightGrey
                           ),
-                          child: Stack(
-                            children: 
-                            [
-                              Center(
-                                child: Text(
-                                  'Map not loaded',
-                                  style: textStyle(12, regular, greyText),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              InkWell(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: stat.StaticMap(
-                                    googleApiKey:'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
-                                    center: stat.Location(
-                                        _initialcameraposition.latitude,
-                                        _initialcameraposition.longitude),
-                                    zoom: 14,
-                                    scaleToDevicePixelRatio: true,
-                                    markers: [
-                                      stat.Marker(
-                                        size: stat.MarkerSize.mid,
-                                        color: Colors.red,
-                                        locations: [
-                                          stat.GeocodedLocation.latLng(_initialcameraposition.latitude, _initialcameraposition.longitude),
-                                        ]
-                                      ),
-                                      stat.Marker(
-                                        size: stat.MarkerSize.small,
-                                        color: purple,
-                                        locations: markerList,
-                                      ),
-                                    ],
+                          child: InkWell(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: stat.StaticMap(
+                                googleApiKey:'AIzaSyDIRNyaUOlF0wH2sWHKvOL8yiCrmf5Rqqw',
+                                center: stat.Location(
+                                    _initialcameraposition.latitude,
+                                    _initialcameraposition.longitude),
+                                zoom: 14,
+                                scaleToDevicePixelRatio: true,
+                                markers: [
+                                  stat.Marker(
+                                    size: stat.MarkerSize.mid,
+                                    color: Colors.red,
+                                    locations: [
+                                      stat.GeocodedLocation.latLng(_initialcameraposition.latitude, _initialcameraposition.longitude),
+                                    ]
                                   ),
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => SearchPage1(LatLng(_initialcameraposition.latitude, _initialcameraposition.longitude))),
-                                  );
-                                },
+                                  stat.Marker(
+                                    size: stat.MarkerSize.small,
+                                    color: purple,
+                                    locations: markerList,
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SearchPage1(LatLng(_initialcameraposition.latitude, _initialcameraposition.longitude))),
+                              );
+                            },
                           ),
                         ),
                         Container(
@@ -238,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                         final stations = snapshot.data!;
                         stations.sort((a, b) => a.distance!.compareTo(b.distance!));
                         return Column(
-                          children: stations.map((station) => StationCard(station)).take(5).toList(),
+                          children: stations.map((station) => StationCard(station, userLatLng)).take(5).toList(),
                         );
                       } else {
                         return const Center(child: Text('No stations found'));
@@ -281,7 +272,12 @@ class _HomePageState extends State<HomePage> {
     final querySnapshot = await FirebaseFirestore.instance.collection('station').get();
     final stations = <Station>[];
     final userLocation = await location.getLocation();
-    final userLatLng = LatLng(userLocation.latitude!, userLocation.longitude!);
+    if(userLocation.latitude != null && userLocation.longitude != null){
+      setState(() {
+        userLatLng = LatLng(userLocation.latitude!, userLocation.longitude!);
+        isLocationServiceEnabled == true;
+      });
+    }
     for (final docSnapshot in querySnapshot.docs) {
       final station = Station.fromSnapshot(docSnapshot);
       station.distance = getDistance(userLatLng.latitude, userLatLng.longitude, station.latitude, station.longitude,);

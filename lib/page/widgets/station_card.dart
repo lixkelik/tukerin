@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tukerin/models/station.dart';
 import 'package:tukerin/page/detail_screen.dart';
 import 'package:intl/intl.dart';
@@ -6,14 +7,15 @@ import 'package:intl/intl.dart';
 class StationCard extends StatelessWidget {
 
   final Station station;
-  const StationCard(this.station, {super.key});
+  final LatLng currLoc;
+  const StationCard(this.station, this.currLoc, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
-          context, MaterialPageRoute(builder: (_) => DetailScreen(station.image, station.name, station.address, station.price, station.distance!, station.latitude, station.longitude, station.currLoc)),
+          context, MaterialPageRoute(builder: (_) => DetailScreen(station, currLoc))
         );
       },
       child: Container( 

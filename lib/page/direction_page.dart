@@ -192,7 +192,7 @@ class _DirectionPageState extends State<DirectionPage> {
     }
     
     setState(() {
-      distance = totDistance.toStringAsPrecision(4);
+      distance = totDistance.toStringAsPrecision(2);
     });
   }
 
