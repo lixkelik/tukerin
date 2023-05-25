@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: const EdgeInsets.only(top: 15),
                     child: Text(
-                      'Featured Station',
+                      'Nearby Station',
                       style: textStyle(20, semiBold, darkerGrey)
                     ),
                   ),
