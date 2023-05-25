@@ -84,6 +84,7 @@ class _DirectionPageState extends State<DirectionPage> {
                   onMapCreated: (controller){
                     _googleMapController = controller;
                   },
+                  
                   compassEnabled: false,
                   myLocationButtonEnabled: true,
                   myLocationEnabled: true,
