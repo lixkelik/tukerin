@@ -107,7 +107,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (_) => DirectionPage(station.name, station.address,
-                            station.latitude,station.longitude, _currLoc)),);
+                            station.latitude,station.longitude)),);
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),

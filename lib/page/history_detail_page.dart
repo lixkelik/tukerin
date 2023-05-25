@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart' as stat;
 import 'package:intl/intl.dart';
 import 'package:tukerin/constant_builder.dart';
@@ -111,7 +110,7 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                   onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => DirectionPage(_history.name,_history.address,_history.latitude,_history.longitude,_history.currLoc)),);
+                    MaterialPageRoute(builder: (_) => DirectionPage(_history.name,_history.address,_history.latitude,_history.longitude)),);
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),

@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  LocationData? currentLocation;
   Location location = Location();
   bool isLocationServiceEnabled = false;
   late Future<List<Station>> stationList;
@@ -246,13 +245,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetchLocation() async {
-    currentLocation = await location.getLocation();
     location.onLocationChanged.listen((LocationData currentLocation) {
       setState(() {
-        currentLocation = currentLocation;
         _initialcameraposition = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+        
       });
     });
+    
   }
 
   Future getMarker() async{

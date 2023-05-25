@@ -1,5 +1,6 @@
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
 import 'package:tukerin/page/widgets/get_distance.dart';
@@ -11,34 +12,33 @@ class DirectionPage extends StatefulWidget {
   String address;
   double latitude;
   double longitude;
-  LatLng currLoc;
 
   DirectionPage(
     this.name,
     this.address,
     this.latitude,
     this.longitude,
-    this.currLoc,
     {super.key}
   );
 
   @override
   // ignore: no_logic_in_create_state
-  State<DirectionPage> createState() => _DirectionPageState(name, latitude, longitude, currLoc);
+  State<DirectionPage> createState() => _DirectionPageState(name, latitude, longitude);
 }
 
 class _DirectionPageState extends State<DirectionPage> {
   final String _name;
   final double _latitude;
   final double _longitude;
-  final LatLng _currLoc;
+ 
 
   _DirectionPageState(
     this._name, 
     this._latitude, 
     this._longitude,
-    this._currLoc
   );
+
+  LatLng _currLoc = const LatLng(-6.175835, 106.827158);
 
   GoogleMapController? _googleMapController;
   List<LatLng> polylineCoordinates = [];
@@ -53,7 +53,7 @@ class _DirectionPageState extends State<DirectionPage> {
 
   @override
   void initState(){ 
-    getPolyPoints();
+    fetchLocation();
     super.initState();
   }
 
@@ -97,6 +97,7 @@ class _DirectionPageState extends State<DirectionPage> {
                       width: 6
                     ),
                   },
+                  
                   markers: {
                     Marker(
                       markerId: const MarkerId('destination'),
@@ -163,6 +164,7 @@ class _DirectionPageState extends State<DirectionPage> {
   }
 
   void getPolyPoints() async{
+    polylineCoordinates.clear();
     PolylinePoints polylinePoints = PolylinePoints();
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
@@ -214,10 +216,30 @@ class _DirectionPageState extends State<DirectionPage> {
           ],
         ),
       )));
-    await Future.delayed(const Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 1000));
     // ignore: use_build_context_synchronously
     Navigator.of(context)
     ..pop()
     ..pop();
+  }
+
+  fetchLocation() async {
+    Location location = Location();
+    LocationData curr = await location.getLocation();
+    setState(() {
+      _currLoc = LatLng(curr.latitude!, curr.longitude!);
+      
+      getPolyPoints();
+      _googleMapController!.animateCamera(CameraUpdate.newLatLng(
+         _currLoc
+      ));
+    });
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      setState(() {
+        _currLoc = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+      });
+    });
+    
+    
   }
 }

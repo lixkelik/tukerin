@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:tukerin/constant_builder.dart';
 import 'package:tukerin/page/widgets/appTheme.dart';
 import 'package:tukerin/page/widgets/utils.dart';
